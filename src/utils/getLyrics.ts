@@ -1,14 +1,14 @@
 // Loading the dependencies. We don't need pretty
 // because we shall not log html to the terminal
-const axios = require("axios");
-const cheerio = require("cheerio");
-const fs = require("fs");
+import axios from "axios";
+import cheerio from "cheerio";
+import fs from "fs";
 
 // URL of the page we want to scrape
 const url = "https://www.azlyrics.com/lyrics/maverickcitymusic/champion.html";
 
 // Async function which scrapes the data
-async function getLyrics() {
+ async function getLyrics() {
   try {
     // Fetch HTML of the page we want to scrape
     const { data } = await axios.get(url);
@@ -37,7 +37,7 @@ async function getLyrics() {
     fs.writeFile(
       "./src/" + songs[0].name.toLowerCase() + ".json",
       JSON.stringify(songs, null, 2),
-      (err:string) => {
+      (err:unknown) => {
         if (err) {
           console.error(err);
           return;
@@ -51,5 +51,5 @@ async function getLyrics() {
 }
 // Invoke the above function
 // getLyrics();
-export{}
+export {getLyrics}
 
